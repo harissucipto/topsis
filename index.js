@@ -45,12 +45,21 @@ let app = new Vue({
             // F. kalikan dengan bobot
             const valXb = (val, i) => val * this.bobotCN[i];
 
-            // c kali dengan bobot index1
+            // c kali dengan bobot index
             const cXb = (arr, i) => arr.map((value) => valXb(value, i));
+
+            // minum dari array
+            const minArr = arr => math.min(...arr);
+
+
+            // maksimum dari array
+            const maxArr = arr => math.max(...arr);
 
 
 
             ////////////////////////////////////////////////////<<<<<<<
+            //////////////////////////cari jawabanya\\\\\\\\\\\\\\\\\\\\\
+            ////////////////////////////////////////////////////////////
 
 
             /////////////////////////////// cari matriks normalisasi
@@ -68,7 +77,13 @@ let app = new Vue({
             const cTB4 = cXb(cT4, 3);
             const cTB5 = cXb(cT5, 4);
 
-            console.log(cTB1);
+            // solusi ideal positif
+
+
+
+            // solusi ideal negatif
+
+
 
 
         }

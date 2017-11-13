@@ -8,10 +8,10 @@ let app = new Vue({
         c4: [3, 2, 2],
         c5: [3, 3, 2],
         bobotCN: [5, 3, 4, 4, 2],
-
     },
     methods: {
         keputusanTernormalisasi() {
+
             // fungsi
             ////////////////////////////-----\\\\\\\\\\\\\\\\\\\\\\\\\\\
             // fungsi untuk mencari Matriks Keputusan ternormalisasi  
@@ -42,10 +42,35 @@ let app = new Vue({
                 return arr.map(value => cariRij(value))
             }
 
+            // F. kalikan dengan bobot
+            const valXb = (val, i) => val * this.bobotCN[i];
 
-            ///////////////////////////////
+            // c kali dengan bobot index1
+            const cXb = (arr, i) => arr.map((value) => valXb(value, i));
 
-            console.log(nRij(this.c1));
+
+
+            ////////////////////////////////////////////////////<<<<<<<
+
+
+            /////////////////////////////// cari matriks normalisasi
+            const cT1 = nRij(this.c1);
+            const cT2 = nRij(this.c2);
+            const cT3 = nRij(this.c3);
+            const cT4 = nRij(this.c4);
+            const cT5 = nRij(this.c5);
+
+
+            /// Matriks keputusan ternormalisasi terbobot
+            const cTB1 = cXb(cT1, 0);
+            const cTB2 = cXb(cT2, 1);
+            const cTB3 = cXb(cT3, 2);
+            const cTB4 = cXb(cT4, 3);
+            const cTB5 = cXb(cT5, 4);
+
+            console.log(cTB1);
+
+
         }
     }
 })

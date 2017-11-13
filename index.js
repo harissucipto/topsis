@@ -8,6 +8,8 @@ let app = new Vue({
         c4: [3, 2, 2],
         c5: [3, 3, 2],
         bobotCN: [5, 3, 4, 4, 2],
+        isJawaban: false,
+        solusinya: []
     },
     methods: {
         keputusanTernormalisasi() {
@@ -55,6 +57,26 @@ let app = new Vue({
             // maksimum dari array
             const maxArr = arr => math.max(...arr);
 
+            // F. Jarak
+            const jarak = (nilaiTerbobot, solusi) => {
+                const dikurangi = nilaiTerbobot.map((nilai, i) => {
+                    return (nilai - solusi[i])
+                });
+                const dipow2 = dikurangi.map(nilai => math.pow(nilai, 2));
+
+                const dijumlahkan = dipow2.reduce((a, b) => a + b, 0);
+
+                return math.round(
+                    math.sqrt(dijumlahkan),
+                    4
+                );
+            }
+
+            // F.solusi
+            const solusi = (positif, negatif) => {
+                return math.round((negatif / (positif + negatif )), 4);
+            }
+
 
 
             ////////////////////////////////////////////////////<<<<<<<
@@ -78,13 +100,83 @@ let app = new Vue({
             const cTB5 = cXb(cT5, 4);
 
             // solusi ideal positif
+            const maxCTB1 = maxArr(cTB1);
+            const maxCTB2 = maxArr(cTB2);
+            const maxCTB3 = maxArr(cTB3);
+            const maxCTB4 = maxArr(cTB4);
+            const maxCTB5 = maxArr(cTB5);
 
+            const maxCTB = [maxCTB1, maxCTB2, maxCTB3, maxCTB4, maxCTB5];
 
 
             // solusi ideal negatif
+            const minCTB1 = minArr(cTB1);
+            const minCTB2 = minArr(cTB2);
+            const minCTB3 = minArr(cTB3);
+            const minCTB4 = minArr(cTB4);
+            const minCTB5 = minArr(cTB5);
+
+            const minCTB = [minCTB1, minCTB2, minCTB3, minCTB4, minCTB5]
+
+
+            // masukan bobot niali CTB  ke tiap nama alternatif
+            const a1 = {
+                name: this.namaAlternatif[0],
+                value: [
+                    cTB1[0],
+                    cTB2[0],
+                    cTB3[0],
+                    cTB4[0],
+                    cTB5[0]
+                ],
+            }
+
+            const a2 = {
+                name: this.namaAlternatif[1],
+                value: [
+                    cTB1[1],
+                    cTB2[1],
+                    cTB3[1],
+                    cTB4[1],
+                    cTB5[1]
+                ]
+            }
+
+            
+            const a3 = {
+                name: this.namaAlternatif[2],
+                value: [
+                    cTB1[2],
+                    cTB2[2],
+                    cTB3[2],
+                    cTB4[2],
+                    cTB5[2]
+                ]
+            }
+
+            a1.positif = jarak(a1.value, maxCTB);
+            a1.negatif = jarak(a1.value, minCTB);
+            a1.solusi = solusi(a1.positif, a1.negatif);
+
+            a2.positif = jarak(a2.value, maxCTB);
+            a2.negatif = jarak(a2.value, minCTB);
+            a2.solusi = solusi(a2.positif, a2.negatif);
+
+            a3.positif = jarak(a3.value, maxCTB);
+            a3.negatif = jarak(a3.value, minCTB);
+            a3.solusi = solusi(a3.positif, a3.negatif);
 
 
 
+
+            const dataAlternatif = [a1, a2, a3];
+
+            const sortSolusinya = _.sortBy( dataAlternatif, 'solusi' ).reverse();
+
+            this.solusinya.splice(0);
+            this.solusinya.push(...sortSolusinya);
+
+            this.isJawaban = true;
 
         }
     }

@@ -47,12 +47,33 @@
         </div>
 
         <button @click="keputusanTernormalisasi">Cari Solusi</button>
+
+        <div id="jawaban" v-if="isJawaban">
+            <h2>Solusi yang diberikan yaitu</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <td>No</td>
+                        <td>Nama Alternatif</td>
+                        <td>Nilai</td>
+                    </tr>
+                </thead>
+                <tbody v-for="(value, i) in solusinya">
+                    <tr>
+                        <td>{{i + 1}}</td>
+                        <td>{{value.name}}</td>
+                        <td>{{value.solusi}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
 
     <script src="./vue.js"></script>
     <script src="./math.js"></script>
+    <script src="./underscore-min.js"></script>
     <script src="./index.js"></script>
 </body>
 

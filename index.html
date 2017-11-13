@@ -5,12 +5,30 @@
     <title>SPK Topsis</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <h1>SPK dengan Topsis</h1>
-        <h3>Dibuat Oleh Kelompok 4 Sistem Informasi UR 2015</h3>
+        <h3>Dibuat Oleh Kelompok 4 Sistem Informasi UR 2015:</h3>
+        <ul>
+            <li>Frans Feby</li>
+            <li>Haris Sucipto</li>
+            <li>Ilfa Diana Nasution</li>
+            <li>Vivi Novriyanti</li>
+        </ul>
+        <hr>
     </header>
 
     <div id="app">
@@ -42,7 +60,7 @@
         <div>
             <p>Input Bobot setiap kriteria C1, C2, … C5:</p>
             <ul v-for="(v, k) in bobotCN">
-                <li>C{{k + 1}}<input v-model="bobotCN[k]"></li>
+                <li>C{{k + 1}} : <input v-model="bobotCN[k]"></li>
             </ul>
         </div>
 
@@ -55,7 +73,7 @@
                     <tr>
                         <td>No</td>
                         <td>Nama Alternatif</td>
-                        <td>Nilai</td>
+                        <td>Nilai Jarak Kedekatan (V)</td>
                     </tr>
                 </thead>
                 <tbody v-for="(value, i) in solusinya">
@@ -66,6 +84,9 @@
                     </tr>
                 </tbody>
             </table>
+
+            <hr>
+            <p>dari Nilai Jarak Kedekatan v (dari setiap alternatif terhadap solusi ideal) diproleh nilai {{ solusinya[0].name}} memiliki nilai terbesar sehingga yang akan dipilih yaitu <b> {{solusinya[0].name}}</b> sebagai solusi terbaik </p>
         </div>
     </div>
 

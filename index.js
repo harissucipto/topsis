@@ -2,12 +2,12 @@ let app = new Vue({
     el: '#app',
     data: {
         namaAlternatif: ["a1", "a2", "a3"],
-        c1: [4, 3, 5],
-        c2: [4, 3, 4],
-        c3: [5, 4, 2],
-        c4: [3, 2, 2],
-        c5: [3, 3, 2],
-        bobotCN: [5, 3, 4, 4, 2],
+        c1: [0, 0, 0],
+        c2: [0, 0, 0],
+        c3: [0, 0, 0],
+        c4: [0, 0, 0],
+        c5: [0, 0, 0],
+        bobotCN: [0, 0, 0, 0, 0],
         isJawaban: false,
         solusinya: []
     },

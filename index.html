@@ -37,13 +37,13 @@
             <thead>
                 <tr>
                     <td>No</td>
-                    <td>Alternatif/Kiteria</td>
-                    <td>Harga</td>
-                    <td>Kulitas</td>
-                    <td>Fitur</td>
-                    <td>Populer</td>
-                    <td>Purna Jual</td>
-                    <td>Keawetan</td>
+                    <td>Nama Alternatif/Kiteria</td>
+                    <td>Harga (C1)</td>
+                    <td>Kulitas (C2)</td>
+                    <td>Fitur (C3)</td>
+                    <td>Populer (C4)</td>
+                    <td>Purna Jual (C5)</td>
+                    <td>Keawetan (C6)</td>
                 </tr>
             </thead>
             <tbody v-for="(v, k) in namaAlternatif">
@@ -74,7 +74,7 @@
             </tbody>
         </table>
         <div>
-            <p>Input Bobot setiap kriteria C1, C2, … C5:</p>
+            <p>Input Bobot setiap kriteria C1, C2, … C6:</p>
             <ul v-for="(v, k) in bobotCN">
                 <li>C{{k + 1}} :
                     <input v-model="bobotCN[k]">

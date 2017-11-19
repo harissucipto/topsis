@@ -9,7 +9,7 @@
         table {
             border-collapse: collapse;
         }
-        
+
         table,
         th,
         td {
@@ -37,30 +37,48 @@
             <thead>
                 <tr>
                     <td>No</td>
-                    <td>Nama Alternatif</td>
-                    <td>C1</td>
-                    <td>C2</td>
-                    <td>C3</td>
-                    <td>C4</td>
-                    <td>C5</td>
+                    <td>Alternatif/Kiteria</td>
+                    <td>Harga</td>
+                    <td>Kulitas</td>
+                    <td>Fitur</td>
+                    <td>Populer</td>
+                    <td>Purna Jual</td>
+                    <td>Keawetan</td>
                 </tr>
             </thead>
             <tbody v-for="(v, k) in namaAlternatif">
                 <tr>
                     <td>{{k + 1}}</td>
-                    <td><input v-model="namaAlternatif[k]"></td>
-                    <td><input v-model="c1[k]"></td>
-                    <td><input v-model="c2[k]"></td>
-                    <td><input v-model="c3[k]"></td>
-                    <td><input v-model="c4[k]"></td>
-                    <td><input v-model="c5[k]"></td>
+                    <td>
+                        <input v-model="namaAlternatif[k]">
+                    </td>
+                    <td>
+                        <input v-model="c1[k]">
+                    </td>
+                    <td>
+                        <input v-model="c2[k]">
+                    </td>
+                    <td>
+                        <input v-model="c3[k]">
+                    </td>
+                    <td>
+                        <input v-model="c4[k]">
+                    </td>
+                    <td>
+                        <input v-model="c5[k]">
+                    </td>
+                    <td>
+                        <input v-model="c6[k]">
+                    </td>
                 </tr>
             </tbody>
         </table>
         <div>
             <p>Input Bobot setiap kriteria C1, C2, … C5:</p>
             <ul v-for="(v, k) in bobotCN">
-                <li>C{{k + 1}} : <input v-model="bobotCN[k]"></li>
+                <li>C{{k + 1}} :
+                    <input v-model="bobotCN[k]">
+                </li>
             </ul>
         </div>
 
@@ -86,7 +104,9 @@
             </table>
 
             <hr>
-            <p>dari Nilai Jarak Kedekatan v (dari setiap alternatif terhadap solusi ideal) diproleh nilai {{ solusinya[0].name}} memiliki nilai terbesar sehingga yang akan dipilih yaitu <b> {{solusinya[0].name}}</b> sebagai solusi terbaik </p>
+            <p>dari Nilai Jarak Kedekatan v (dari setiap alternatif terhadap solusi ideal) diproleh nilai {{ solusinya[0].name}}
+                memiliki nilai terbesar sehingga yang akan dipilih yaitu
+                <b> {{solusinya[0].name}}</b> sebagai solusi terbaik </p>
         </div>
     </div>
 

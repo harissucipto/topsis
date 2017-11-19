@@ -26,6 +26,10 @@
         #jawaban table {
             margin: 0 auto;
         }
+
+        button {
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -96,7 +100,7 @@
                 </div>
 
 
-                <a @click="keputusanTernormalisasi" class="button is-primary">Cari SOlusinya</a>
+                <button @click="keputusanTernormalisasi" class="button is-primary">Cari SOlusinya</button>
 
                 <div id="jawaban" v-if="isJawaban">
                     <h2>Solusi yang diberikan yaitu</h2>

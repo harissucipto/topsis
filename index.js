@@ -146,7 +146,9 @@ let app = new Vue({
 
       const dataAlternatif = [a1, a2, a3, a4];
 
-      const sortSolusinya = _.sortBy(dataAlternatif, 'solusi');
+      const sortSolusinya = dataAlternatif.sort(
+        (a, b) => (a.solusi > b.solusi ? 1 : a.solusi < b.solusi ? -1 : 0)
+      );
 
       this.solusinya.splice(0);
       this.solusinya.push(...sortSolusinya);

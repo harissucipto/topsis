@@ -4,112 +4,143 @@
 <head>
     <title>SPK Topsis</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bulma.min.css">
     <style>
-        table {
-            border-collapse: collapse;
+        .c {
+            min-width: 100px;
         }
 
-        table,
-        th,
-        td {
-            border: 1px solid black;
+        .cj {
+            margin: 10px 0;
+            min-width: 40px;
+        }
+
+        #jawaban {
+            border: 2px solid black;
+            font-size: 16px;
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #jawaban table {
+            margin: 0 auto;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>SPK dengan Topsis</h1>
-        <h3>Dibuat Oleh Kelompok 4 Sistem Informasi UR 2015:</h3>
-        <ul>
-            <li>Frans Feby</li>
-            <li>Haris Sucipto</li>
-            <li>Ilfa Diana Nasution</li>
-            <li>Vivi Novriyanti</li>
-        </ul>
-        <hr>
-    </header>
+    <section class="section">
+        <div class="container">
+            <div class="header">
+                <h1 class="title">
+                    SPK Pemilihan HP dengan Metode Topsis
+                </h1>
+                <p class="subtitle">
+                    dibuat oleh
+                    <strong>Kelompok 4</strong>!
+                </p>
 
-    <div id="app">
-        <table>
-            <caption>Input Data</caption>
-            <thead>
-                <tr>
-                    <td>No</td>
-                    <td>Nama Alternatif/Kiteria</td>
-                    <td>Harga (C1)</td>
-                    <td>Kulitas (C2)</td>
-                    <td>Fitur (C3)</td>
-                    <td>Populer (C4)</td>
-                    <td>Purna Jual (C5)</td>
-                    <td>Keawetan (C6)</td>
-                </tr>
-            </thead>
-            <tbody v-for="(v, k) in namaAlternatif">
-                <tr>
-                    <td>{{k + 1}}</td>
-                    <td>
-                        <input v-model="namaAlternatif[k]">
-                    </td>
-                    <td>
-                        <input v-model="c1[k]">
-                    </td>
-                    <td>
-                        <input v-model="c2[k]">
-                    </td>
-                    <td>
-                        <input v-model="c3[k]">
-                    </td>
-                    <td>
-                        <input v-model="c4[k]">
-                    </td>
-                    <td>
-                        <input v-model="c5[k]">
-                    </td>
-                    <td>
-                        <input v-model="c6[k]">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div>
-            <p>Input Bobot setiap kriteria C1, C2, … C6:</p>
-            <ul v-for="(v, k) in bobotCN">
-                <li>C{{k + 1}} :
-                    <input v-model="bobotCN[k]">
-                </li>
-            </ul>
+            </div>
+
+
+            <div id="app">
+                <table class="table">
+                    <caption>Input Data</caption>
+                    <thead>
+                        <tr>
+                            <td>No</td>
+                            <td>Nama Alternatif/Kiteria</td>
+                            <td>Harga (C1)</td>
+                            <td>Kulitas (C2)</td>
+                            <td>Fitur (C3)</td>
+                            <td>Populer (C4)</td>
+                            <td>Purna Jual (C5)</td>
+                            <td>Keawetan (C6)</td>
+                        </tr>
+                    </thead>
+                    <tbody v-for="(v, k) in namaAlternatif">
+                        <tr>
+                            <td>{{k + 1}}</td>
+                            <td>
+                                <input class="input" v-model="namaAlternatif[k]">
+                            </td>
+                            <td>
+                                <input class="input c" v-model="c1[k]" type="number">
+                            </td>
+                            <td>
+                                <input class="input c" v-model="c2[k]" type="number">
+                            </td>
+                            <td>
+                                <input class="input c" v-model="c3[k]" type="number">
+                            </td>
+                            <td>
+                                <input class="input c" v-model="c4[k]" type="number">
+                            </td>
+                            <td>
+                                <input class="input c" v-model="c5[k]" type="number">
+                            </td>
+                            <td>
+                                <input class="input c" v-model="c6[k]" type="number">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <p>Input Bobot setiap kriteria C1, C2, … C6:</p>
+                    <ul v-for="(v, k) in bobotCN">
+                        <li>C{{k + 1}} :
+                            <input class="cj" v-model="bobotCN[k]" type="number">
+                        </li>
+                    </ul>
+                </div>
+
+
+                <a @click="keputusanTernormalisasi" class="button is-primary">Cari SOlusinya</a>
+
+                <div id="jawaban" v-if="isJawaban">
+                    <h2>Solusi yang diberikan yaitu</h2>
+                    <table class="table  table is-striped">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Nama Alternatif</td>
+                                <td>Nilai Jarak Kedekatan (V)</td>
+                            </tr>
+                        </thead>
+                        <tbody v-for="(value, i) in solusinya">
+                            <tr>
+                                <td>{{i + 1}}</td>
+                                <td>{{value.name}}</td>
+                                <td>{{value.solusi}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr>
+                    <p>dari Nilai Jarak Kedekatan v (dari setiap alternatif terhadap solusi ideal) diproleh nilai {{ solusinya[0].name}}
+                        memiliki nilai terbesar sehingga yang akan dipilih yaitu
+                        <br>
+                        <b> {{solusinya[0].name}}</b> sebagai solusi terbaik </p>
+                </div>
+            </div>
+
         </div>
 
-        <button @click="keputusanTernormalisasi">Cari Solusi</button>
-
-        <div id="jawaban" v-if="isJawaban">
-            <h2>Solusi yang diberikan yaitu</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <td>No</td>
-                        <td>Nama Alternatif</td>
-                        <td>Nilai Jarak Kedekatan (V)</td>
-                    </tr>
-                </thead>
-                <tbody v-for="(value, i) in solusinya">
-                    <tr>
-                        <td>{{i + 1}}</td>
-                        <td>{{value.name}}</td>
-                        <td>{{value.solusi}}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <hr>
-            <p>dari Nilai Jarak Kedekatan v (dari setiap alternatif terhadap solusi ideal) diproleh nilai {{ solusinya[0].name}}
-                memiliki nilai terbesar sehingga yang akan dipilih yaitu
-                <b> {{solusinya[0].name}}</b> sebagai solusi terbaik </p>
-        </div>
-    </div>
-
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                        <strong>Kelompok 4</strong> by
+                        <a href="#">Frans Feby</a>,
+                        <a href="#">Haris Sucipto</a>,
+                        <a href="#">Ilfa Diana Nasution</a>,
+                        <a href="#">Vivi Noviyanti</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </section>
 
 
     <script src="./vue.js"></script>
